@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 @MainActor
-class viewModel {
+class ViewModel {
     enum FetchStatus {
         case notStarted
         case fetching
@@ -38,7 +38,7 @@ class viewModel {
         status = .fetching
         
         do {
-            quote = try await fetcher.fetch(from: show)
+            quote = try await fetcher.fetchQuote(from: show)
             
             character = try await fetcher.fetchCharacter(quote.character)
             
