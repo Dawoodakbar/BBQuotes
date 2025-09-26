@@ -40,7 +40,7 @@ struct FetchService {
         
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 22 else {
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw FetchError.badResponse
         }
         

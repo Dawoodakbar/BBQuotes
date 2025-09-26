@@ -12,6 +12,8 @@ struct QuoteView: View {
     let vm = ViewModel()
     let show: String
     
+    @State var showCharacterIn: Bool = false
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -90,6 +92,9 @@ struct QuoteView: View {
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $showCharacterIn) {
+            CharacterView(character: vm.character, show: show)
+        }
     }
 }
 
