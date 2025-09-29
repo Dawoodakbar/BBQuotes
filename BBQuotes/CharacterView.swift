@@ -18,7 +18,6 @@ struct CharacterView: View {
                     Image(show.lowercased().replacingOccurrences(of: " ", with: ""))
                         .resizable()
                         .scaledToFit()
-                    
                     ScrollView {
                         TabView {
                             ForEach(character.images, id: \.self) { characterImageURL in
@@ -86,6 +85,11 @@ struct CharacterView: View {
                                                 .resizable()
                                                 .scaledToFit()
                                                 .clipShape(.rect(cornerRadius: 15))
+                                                .onAppear {
+                                                    withAnimation {
+                                                        proxy.scrollTo(1, anchor: .bottom)
+                                                    }
+                                                }
                                         } placeholder: {
                                             ProgressView()
                                         }
@@ -98,8 +102,8 @@ struct CharacterView: View {
                                 }
                             }
                         }
-                        .padding(.bottom, 50)
                         .frame(width: geo.size.width/1.25, alignment: .leading)
+                        .padding(.bottom, 50)
                         .id(1)
                     }
                     .scrollIndicators(.hidden)
